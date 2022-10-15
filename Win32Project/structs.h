@@ -20,8 +20,8 @@ struct Usuario {
     char NombreDeUsuario[100];
     char Contasena[30];
 
-    struct Usuario *SiguentePuntero;
-    struct Usuario *UltimoPuntero;
+    struct Usuario* SiguentePuntero;
+    struct Usuario* UltimoPuntero;
 } *NodoActualDeUsuario;
 
 // Cientes
@@ -45,8 +45,8 @@ struct Cliente {
     char Nombre[200];
     char Direccion[255];
 
-    struct Cliente *SiguentePuntero;
-    struct Cliente *UltimoPuntero;
+    struct Cliente* SiguentePuntero;
+    struct Cliente* UltimoPuntero;
 } *NodoActualDeCliente;
 
 struct Cajero {
@@ -56,8 +56,8 @@ struct Cajero {
     float DineroDisponible;
     float DineroTotal;
 
-    struct Cajero *SiguentePuntero;
-    struct Cajero *UltimoPuntero;
+    struct Cajero* SiguentePuntero;
+    struct Cajero* UltimoPuntero;
 } *NodoActualDeCajero;
 
 // Promocion
@@ -80,8 +80,8 @@ struct Promocion {
     char Descripcion[255];
     float bono;
 
-    struct Promocion *SiguentePuntero;
-    struct Promocion *UltimoPuntero;
+    struct Promocion* SiguentePuntero;
+    struct Promocion* UltimoPuntero;
 } *NodoActualDePromocion;
 
 // Consumos
