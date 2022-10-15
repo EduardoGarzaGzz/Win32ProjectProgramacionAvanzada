@@ -1,5 +1,7 @@
 #include "libs.h"
 #include "structs.h"
+#include "validaciones.h"
+#include "funciones_usuario.h"
 
 HINSTANCE hInst;
 
