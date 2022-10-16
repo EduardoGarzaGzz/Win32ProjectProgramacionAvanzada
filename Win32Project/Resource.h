@@ -71,6 +71,11 @@
 #define IDC_COMBO_COMERCIOS             1018
 #define IDC_BTN_GUARDAR                 1020
 #define IDC_EDIT_PASSWORD               1021
+#define IDC_EDIT_ALIAS                  1022
+#define IDC_BTN_OPT_USUARIOS            1023
+#define IDC_BTN_OPT_CLIENTES            1024
+#define IDC_BTN_OPT_PROMOCIONES         1025
+#define IDC_BTN_OPT_CONSUMOS            1026
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -80,7 +85,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        157
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1022
+#define _APS_NEXT_CONTROL_VALUE         1027
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

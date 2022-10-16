@@ -46,7 +46,7 @@ void leer_usuarios()
 	Usuario* user = nullptr;
 	ifstream file;
 
-	file.open("user.bin", ios::in | ios::binary);
+	file.open("usuarios.bin", ios::in | ios::binary);
 
 	if (!file.is_open() || file.fail())
 	{
@@ -80,14 +80,32 @@ void guardar_en_archivo_usuario()
 
 	file.open("usuarios.bin", ios::out | ios::binary | ios::trunc);
 
-	if (!file.is_open() || file.fail()) {
+	if (!file.is_open() || file.fail())
+	{
 		archivo_usuarios_tiene_error = true;
 	}
 
-	while (tmpNode != nullptr) {
+	while (tmpNode != nullptr)
+	{
 		file.write(reinterpret_cast<char*>(tmpNode), sizeof(Usuario));
 		tmpNode = tmpNode->SiguentePuntero;
 	}
 
 	file.close();
+}
+
+bool es_login_correcto(char alias[10], char password[30])
+{
+	ir_primer_nodo_usuarios_lista();
+
+	if (ptr_usuarios == nullptr) return false;
+	while (ptr_usuarios != nullptr)
+	{
+		if (strcmp(alias, ptr_usuarios->AliasDeUsuario) == 0 && strcmp(password, ptr_usuarios->Password) == 0)
+			return true;
+
+		ptr_usuarios = ptr_usuarios->SiguentePuntero;
+	}
+
+	return false;
 }

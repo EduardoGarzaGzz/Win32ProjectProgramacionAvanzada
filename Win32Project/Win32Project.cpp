@@ -38,14 +38,27 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			switch (LOWORD(wParam))
 			{
-			case IDM_EXIT:
-				DestroyWindow(hWnd);
+			case IDC_BTN_OPT_USUARIOS:
+				{
+				}
+				break;
+			case IDC_BTN_OPT_CLIENTES:
+				{
+				}
+				break;
+			case IDC_BTN_OPT_PROMOCIONES:
+				{
+				}
+				break;
+			case IDC_BTN_OPT_CONSUMOS:
+				{
+				}
 				break;
 			}
 		}
 		break;
-	case WM_DESTROY:
-		PostQuitMessage(0);
+	case WM_CLOSE:
+		DestroyWindow(hWnd);
 		break;
 	}
 	return 0;
@@ -64,7 +77,23 @@ LRESULT CALLBACK wnd_prec_inicio_seccion(HWND hWnd, UINT message, WPARAM wParam,
 			switch (LOWORD(wParam))
 			{
 			case ID_BTN_INICIO_SECCION:
-				MessageBox(nullptr, L"Las credenciales son incorrectas", L"Advertencia", MB_OK | MB_ICONWARNING);
+				{
+					Usuario* u = new Usuario;
+					const HWND hedAlias = GetDlgItem(hWnd, IDC_EDIT_ALIAS);
+					const HWND hedPassword = GetDlgItem(hWnd, IDC_EDIT_PASSWORD);
+
+					GetWindowTextA(hedAlias, (LPSTR)u->AliasDeUsuario, sizeof(u->AliasDeUsuario));
+					GetWindowTextA(hedPassword, (LPSTR)u->Password, sizeof(u->Password));
+
+					if (es_login_correcto(u->AliasDeUsuario, u->Password))
+					{
+						usuario_logiado = true;
+						MessageBox(nullptr, L"Bienvenido :)", L"Info", MB_OK | MB_ICONINFORMATION);
+						DestroyWindow(hWnd);
+					}
+					else
+						MessageBox(nullptr, L"El alias o la contraseña es incorrecta", L"Error", MB_OK | MB_ICONERROR);
+				}
 				break;
 
 			case ID_BTN_REGISTRARCE:
@@ -114,22 +143,22 @@ LRESULT CALLBACK wnd_prec_registro_admin(HWND hWnd, UINT message, WPARAM wParam,
 
 					if (!nombre_comercio_es_valido(u->NombreComercio))
 					{
-						MessageBox(nullptr, L"El nombre del comercio es invalido", L"Error", MB_OK | MB_ICONERROR);
+						MessageBox(nullptr, L"El nombre del comercio es invalido\nLongitud de 5 a 15 caracteres alfanuméricos o espacios.", L"Error", MB_OK | MB_ICONERROR);
 						break;
 					}
 					else if (!nombre_usuario_es_valido(u->NombreDeUsuario))
 					{
-						MessageBox(nullptr, L"El nombre de usuario es invalido", L"Error", MB_OK | MB_ICONERROR);
+						MessageBox(nullptr, L"El nombre de usuario es invalido\nSolamente se permiten letras, máximo 15", L"Error", MB_OK | MB_ICONERROR);
 						break;
 					}
 					else if (!alias_usuario_es_valido(u->AliasDeUsuario))
 					{
-						MessageBox(nullptr, L"El alias del usuario es invalido", L"Error", MB_OK | MB_ICONERROR);
+						MessageBox(nullptr, L"El alias del usuario es invalido\nSolo se permite caracteres alfanuméricos, mínimo 3 y máximo 10", L"Error", MB_OK | MB_ICONERROR);
 						break;
 					}
 					else if (!password_usuario_es_valida(u->Password))
 					{
-						MessageBox(nullptr, L"La contraseña es invalida", L"Error", MB_OK | MB_ICONERROR);
+						MessageBox(nullptr, L"La contraseña es invalida\nMínimo 3 y máximo 10 caracteres, se debe solicitar una letra, un número y un carácter especial.", L"Error", MB_OK | MB_ICONERROR);
 						break;
 					}
 
@@ -138,6 +167,10 @@ LRESULT CALLBACK wnd_prec_registro_admin(HWND hWnd, UINT message, WPARAM wParam,
 
 					agregar_usuario_lista(u);
 					guardar_en_archivo_usuario();
+
+					MessageBox(nullptr, L"Se a guardado correctamente el nuevo usuario", L"Info",
+					           MB_OK | MB_ICONINFORMATION);
+					DestroyWindow(hWnd);
 				}
 				break;
 			}
