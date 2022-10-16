@@ -2,6 +2,21 @@
 
 #include "libs.h"
 
+bool nombre_comercio_es_valido(char nombre_comercio[15])
+{
+	bool es_valido = true;
+	const int longitud_texto = static_cast<int>(strlen(nombre_comercio));
+
+	for (int i = 0; i < longitud_texto; i++)
+		if (!isalnum(nombre_comercio[i]) && nombre_comercio[i] != 32)
+		{
+			es_valido = false;
+			break;
+		}
+
+	return es_valido && longitud_texto >= 5 && longitud_texto <= 15;
+}
+
 bool es_caracter_especiales(char caracter)
 {
 	return (caracter >= 33 && caracter <= 47) ||
@@ -18,7 +33,7 @@ bool nombre_usuario_es_valido(char nombre_usuario[50])
 	// isalpha evalua que el caractes este entre el rango de valores ASCII para letras
 	// Para mayusculas son del 65 al 90 y para minusculas son del 97 al 122
 	for (int i = 0; i < longitud_texto; i++)
-		if (nombre_usuario[i] != 32 || !isalpha(nombre_usuario[i]))
+		if (!isalpha(nombre_usuario[i]) && nombre_usuario[i] != 32)
 		{
 			es_valido = false;
 			break;
@@ -37,7 +52,7 @@ bool alias_usuario_es_valido(char alias_usuario[10])
 	// Para mayusculas son del 65 al 90 y para minusculas son del 97 al 122
 	// y para digitos que son del 48 y 57
 	for (int i = 0; i < longitud_texto; i++)
-		if (alias_usuario[i] != 32 || !isalnum(alias_usuario[i]))
+		if (!isalnum(alias_usuario[i]) && alias_usuario[i] != 32)
 		{
 			es_valido = false;
 			break;
@@ -46,7 +61,7 @@ bool alias_usuario_es_valido(char alias_usuario[10])
 	return es_valido && longitud_texto >= 3 && longitud_texto <= 10;
 }
 
-bool contrasena_usuario_es_valida(char password[30])
+bool password_usuario_es_valida(char password[30])
 {
 	const int longitud_texto = static_cast<int>(strlen(password));
 	bool tiene_letras = false;
@@ -69,7 +84,7 @@ bool nombre_cliente_es_valido(char nombre[50])
 	const int longitud_texto = static_cast<int>(strlen(nombre));
 
 	for (int i = 0; i < longitud_texto; i++)
-		if (nombre[i] != 32 || !isalpha(nombre[i]))
+		if (!isalpha(nombre[i]))
 		{
 			es_valido = false;
 			break;
@@ -84,7 +99,7 @@ bool alias_cliente_es_valido(char alias[15])
 	const int longitud_texto = static_cast<int>(strlen(alias));
 
 	for (int i = 0; i < longitud_texto; i++)
-		if (alias[i] != 32 || !isalpha(alias[i]))
+		if (!isalpha(alias[i]))
 		{
 			es_valido = false;
 			break;
@@ -141,7 +156,7 @@ bool nombre_promocion_es_valido(char nombre[50])
 	const int longitud_texto = static_cast<int>(strlen(nombre));
 
 	for (int i = 0; i < longitud_texto; i++)
-		if (nombre[i] != 32 || !isalpha(nombre[i]))
+		if (!isalpha(nombre[i]))
 		{
 			es_valido = false;
 			break;

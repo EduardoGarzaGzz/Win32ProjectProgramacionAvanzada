@@ -50,7 +50,10 @@
 #define IDC_EDIT3                       1006
 #define IDC_EDIT9                       1007
 #define IDC_EDIT1                       1008
+#define IDC_EDIT_NOMBRE                 1008
 #define IDC_EDIT4                       1009
+#define IDC_EDIT_NOMBRE2                1009
+#define IDC_EDIT_USERNAME               1009
 #define IDC_BUTTON1                     1010
 #define IDC_EDIT5                       1011
 #define IDC_BUTTON2                     1011
@@ -63,6 +66,11 @@
 #define IDC_BUTTON5                     1014
 #define IDC_EDIT8                       1014
 #define IDC_LIST3                       1015
+#define ID_BTN_INICIO_SECCION           1016
+#define ID_BTN_REGISTRARCE              1017
+#define IDC_COMBO_COMERCIOS             1018
+#define IDC_BTN_GUARDAR                 1020
+#define IDC_EDIT_PASSWORD               1021
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -72,7 +80,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        157
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1016
+#define _APS_NEXT_CONTROL_VALUE         1022
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

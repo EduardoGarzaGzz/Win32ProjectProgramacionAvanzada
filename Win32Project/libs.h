@@ -1,5 +1,8 @@
 ﻿#pragma once
 
 #include <Windows.h>
-#include <ctype.h>
+#include <fstream>
+#include <cctype>
 #include "resource.h"
+
+using namespace std;

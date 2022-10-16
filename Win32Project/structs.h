@@ -2,40 +2,28 @@
 
 #include "libs.h"
 
-struct Comercio
-{
-	int Id;
-	char Nombre[50];
-};
-
-struct TipoUsuario
-{
-	int Id;
-	char Nombre[50];
-};
-
 struct Usuario
 {
 	int Id;
-	int ComercioId;
-	int TipoUsuarioId;
 
 	bool EsSuperAdmin;
 	bool EsAdmin;
 
+	char NombreComercio[15];
 	char NombreDeUsuario[50];
 	char AliasDeUsuario[10];
-	char Contasena[30];
+	char Password[30];
 	char RutaFoto[255];
+	char TipoUsuario[30];
 
 	struct Usuario* SiguentePuntero;
-	struct Usuario* UltimoPuntero;
-} * ptr_usuarios;
+	struct Usuario* AnteriorPuntero;
+} * ptr_usuarios = nullptr;
 
 struct Cliente
 {
 	bool EsPremium;
-	int ComercioId;
+	char NombreComercio[15];
 	char Nombre[50];
 	char Alias[15];
 	char Telefono[10];
@@ -43,8 +31,8 @@ struct Cliente
 	char Fecha[10];
 
 	struct Cliente* SiguentePuntero;
-	struct Cliente* UltimoPuntero;
-} * ptr_clientes;
+	struct Cliente* AnteriorPuntero;
+} * ptr_clientes = nullptr;
 
 
 struct Promocion
@@ -56,8 +44,8 @@ struct Promocion
 	char Fecha[10];
 
 	struct Promocion* SiguentePuntero;
-	struct Promocion* UltimoPuntero;
-} * ptr_promociones;
+	struct Promocion* AnteriorPuntero;
+} * ptr_promociones = nullptr;
 
 struct Consumo
 {
@@ -69,5 +57,5 @@ struct Consumo
 	float Total;
 
 	struct Consumo* SiguentePuntero;
-	struct Consumo* UltimoPuntero;
-} * ptr_consumos;
+	struct Consumo* AnteriorPuntero;
+} * ptr_consumos = nullptr;
