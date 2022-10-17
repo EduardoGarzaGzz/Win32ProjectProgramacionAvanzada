@@ -40,7 +40,7 @@ struct Promocion
 {
 	bool Estatus;
 	char Nombre[50];
-	float MontoPromocion;
+	int MontoPromocion;
 	int PorcentajeDescuento;
 	char Fecha[11];
 

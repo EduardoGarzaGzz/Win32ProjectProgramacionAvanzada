@@ -58,7 +58,6 @@
 #define IDC_EDIT_TELEFONO               1010
 #define IDC_EDIT5                       1011
 #define IDC_BUTTON2                     1011
-#define IDC_EDIT_USERNAME2              1011
 #define IDC_EDIT_EMAIL                  1011
 #define IDC_BUTTON3                     1012
 #define IDC_EDIT6                       1012
@@ -91,6 +90,15 @@
 #define IDC_BTN_NUEVO_CLIENTE           1034
 #define IDC_BTN_ACTUALIZAR_CLIENTE      1035
 #define IDC_BTN_BORRAR_CLIENTE          1036
+#define IDC_LIST_PROMOCIONES            1037
+#define IDC_BTN_NUEVO_PROMOCIONES       1038
+#define IDC_BTN_ACTUALIZAR_PROMOCION    1039
+#define IDC_BTN_BORRAR_PROMOCION        1040
+#define IDC_BUTTON_NOMBRE_PROMOCION     1041
+#define IDC_EDIT_MONTO                  1042
+#define IDC_EDIT_PORCENTAJE             1043
+#define IDC_CHECK_PROMOCION_ACTIVA      1044
+#define IDC_BTN_GURDAR                  1045
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -100,7 +108,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        157
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1037
+#define _APS_NEXT_CONTROL_VALUE         1046
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif

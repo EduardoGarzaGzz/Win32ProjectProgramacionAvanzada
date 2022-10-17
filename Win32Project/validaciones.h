@@ -156,7 +156,7 @@ bool nombre_promocion_es_valido(char nombre[50])
 	const int longitud_texto = static_cast<int>(strlen(nombre));
 
 	for (int i = 0; i < longitud_texto; i++)
-		if (!isalpha(nombre[i]))
+		if (!isalpha(nombre[i]) && nombre[i] != 32)
 		{
 			es_valido = false;
 			break;
@@ -165,9 +165,9 @@ bool nombre_promocion_es_valido(char nombre[50])
 	return es_valido && longitud_texto >= 5 && longitud_texto <= 50;
 }
 
-bool monto_promociones_es_valida(float monto_promociones)
+bool monto_promociones_es_valida(int monto_promociones)
 {
-	return monto_promociones >= 0 && monto_promociones <= 100;
+	return monto_promociones > 100;
 }
 
 bool porcentaje_descuento_promocion_es_valido(int porcentaje_descuneto)
