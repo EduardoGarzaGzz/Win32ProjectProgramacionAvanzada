@@ -8,6 +8,7 @@ struct Usuario
 
 	bool EsSuperAdmin;
 	bool EsAdmin;
+	bool EsCajero;
 
 	char NombreComercio[15];
 	char NombreDeUsuario[50];
@@ -26,9 +27,9 @@ struct Cliente
 	char NombreComercio[15];
 	char Nombre[50];
 	char Alias[15];
-	char Telefono[10];
+	char Telefono[11];
 	char Email[25];
-	char Fecha[10];
+	char Fecha[11];
 
 	struct Cliente* SiguentePuntero;
 	struct Cliente* AnteriorPuntero;
@@ -41,7 +42,7 @@ struct Promocion
 	char Nombre[50];
 	float MontoPromocion;
 	int PorcentajeDescuento;
-	char Fecha[10];
+	char Fecha[11];
 
 	struct Promocion* SiguentePuntero;
 	struct Promocion* AnteriorPuntero;
@@ -51,7 +52,7 @@ struct Consumo
 {
 	int ClienteId;
 	float Monto;
-	char Fecha[10];
+	char Fecha[11];
 	float SubTotal;
 	float Descuento;
 	float Total;

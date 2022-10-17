@@ -84,7 +84,7 @@ bool nombre_cliente_es_valido(char nombre[50])
 	const int longitud_texto = static_cast<int>(strlen(nombre));
 
 	for (int i = 0; i < longitud_texto; i++)
-		if (!isalpha(nombre[i]))
+		if (!isalpha(nombre[i]) && nombre[i] != 32)
 		{
 			es_valido = false;
 			break;
@@ -99,7 +99,7 @@ bool alias_cliente_es_valido(char alias[15])
 	const int longitud_texto = static_cast<int>(strlen(alias));
 
 	for (int i = 0; i < longitud_texto; i++)
-		if (!isalpha(alias[i]))
+		if (!isalpha(alias[i]) && alias[i] != 32)
 		{
 			es_valido = false;
 			break;

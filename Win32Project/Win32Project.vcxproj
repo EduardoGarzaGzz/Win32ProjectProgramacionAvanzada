@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="funciones_cliente.h" />
     <ClInclude Include="funciones_usuario.h" />
     <ClInclude Include="libs.h" />
     <ClInclude Include="Resource.h" />

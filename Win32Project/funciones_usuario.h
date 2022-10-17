@@ -5,6 +5,8 @@
 
 bool usuario_logiado = false;
 bool archivo_usuarios_tiene_error = false;
+Usuario* usuario_seleccionado = nullptr;
+char nombre_comercio_selecionado[15];
 
 void ir_primer_nodo_usuarios_lista()
 {
@@ -97,15 +99,79 @@ void guardar_en_archivo_usuario()
 bool es_login_correcto(char alias[10], char password[30])
 {
 	ir_primer_nodo_usuarios_lista();
+	Usuario* u = nullptr;
 
-	if (ptr_usuarios == nullptr) return false;
-	while (ptr_usuarios != nullptr)
+	u = ptr_usuarios;
+	if (u == nullptr) return false;
+	while (u != nullptr)
 	{
-		if (strcmp(alias, ptr_usuarios->AliasDeUsuario) == 0 && strcmp(password, ptr_usuarios->Password) == 0)
+		if (strcmp(alias, u->AliasDeUsuario) == 0 && strcmp(password, u->Password) == 0)
+		{
+			strcpy_s(nombre_comercio_selecionado, u->NombreComercio);
 			return true;
+		}
 
-		ptr_usuarios = ptr_usuarios->SiguentePuntero;
+
+		u = u->SiguentePuntero;
 	}
 
 	return false;
+}
+
+Usuario* buscar_usuario_por_alias(char alias[10])
+{
+	ir_primer_nodo_usuarios_lista();
+	Usuario* u = nullptr;
+
+	u = ptr_usuarios;
+	while (u != nullptr)
+	{
+		if (strcmp(alias, u->AliasDeUsuario) == 0)
+			return u;
+
+		u = u->SiguentePuntero;
+	}
+
+	return nullptr;
+}
+
+void eliminar_usuario_por_alias(char alias[10])
+{
+	Usuario* u = buscar_usuario_por_alias(alias);
+
+	if (u->AnteriorPuntero == nullptr)
+	{
+		ir_primer_nodo_usuarios_lista();
+		if (u->SiguentePuntero != nullptr)
+		{
+			ptr_usuarios = u->SiguentePuntero;
+			u->SiguentePuntero->AnteriorPuntero = nullptr;
+			u->SiguentePuntero = nullptr;
+		}
+		else
+		{
+			ptr_usuarios = nullptr;
+		}
+	}
+	else if (u->SiguentePuntero == nullptr)
+	{
+		ir_ultimo_nodo_usuarios_lista();
+		if (u->AnteriorPuntero != nullptr)
+		{
+			ptr_usuarios = u->AnteriorPuntero;
+			u->AnteriorPuntero->SiguentePuntero = nullptr;
+			u->AnteriorPuntero = nullptr;
+		}
+		else
+		{
+			ptr_usuarios = nullptr;
+		}
+	}
+	else
+	{
+		u->SiguentePuntero->AnteriorPuntero = u->AnteriorPuntero;
+		u->AnteriorPuntero->SiguentePuntero = u->SiguentePuntero;
+	}
+
+	delete u;
 }

@@ -55,8 +55,11 @@
 #define IDC_EDIT_NOMBRE2                1009
 #define IDC_EDIT_USERNAME               1009
 #define IDC_BUTTON1                     1010
+#define IDC_EDIT_TELEFONO               1010
 #define IDC_EDIT5                       1011
 #define IDC_BUTTON2                     1011
+#define IDC_EDIT_USERNAME2              1011
+#define IDC_EDIT_EMAIL                  1011
 #define IDC_BUTTON3                     1012
 #define IDC_EDIT6                       1012
 #define IDC_LIST1                       1012
@@ -76,6 +79,18 @@
 #define IDC_BTN_OPT_CLIENTES            1024
 #define IDC_BTN_OPT_PROMOCIONES         1025
 #define IDC_BTN_OPT_CONSUMOS            1026
+#define IDC_LIST_USUARIOS               1027
+#define IDC_BTN_NUEVO_USUARIO           1028
+#define IDC_BTN_ACTUALIZAR_USUARIO      1029
+#define IDC_BTN_BORRAR_USUARIO          1030
+#define IDC_STATIC_NOMBRE_COMERSIO      1031
+#define IDC_RADIO_ADMIN                 1032
+#define IDC_STATIC_FECHA                1032
+#define IDC_RADIO_CAJERO                1033
+#define IDC_LIST_CLIENTES               1033
+#define IDC_BTN_NUEVO_CLIENTE           1034
+#define IDC_BTN_ACTUALIZAR_CLIENTE      1035
+#define IDC_BTN_BORRAR_CLIENTE          1036
 #define IDC_STATIC                      -1
 
 // Next default values for new objects
@@ -85,7 +100,7 @@
 #define _APS_NO_MFC                     1
 #define _APS_NEXT_RESOURCE_VALUE        157
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1027
+#define _APS_NEXT_CONTROL_VALUE         1037
 #define _APS_NEXT_SYMED_VALUE           110
 #endif
 #endif
