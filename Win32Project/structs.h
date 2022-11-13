@@ -50,6 +50,7 @@ struct Promocion
 
 struct Consumo
 {
+	int Id;
 	int ClienteId;
 	float Monto;
 	char Fecha[11];

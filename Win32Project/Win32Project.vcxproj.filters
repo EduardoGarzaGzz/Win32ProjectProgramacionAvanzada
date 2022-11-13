@@ -36,6 +36,9 @@
     <ClInclude Include="funciones_promocion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="funciones_consumo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Win32Project.cpp">

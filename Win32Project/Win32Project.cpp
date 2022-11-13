@@ -4,6 +4,7 @@
 #include "funciones_usuario.h"
 #include "funciones_cliente.h"
 #include "funciones_promocion.h"
+#include "funciones_consumo.h"
 
 HINSTANCE hInst;
 
@@ -13,12 +14,15 @@ LRESULT CALLBACK wnd_prec_registro_admin(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_opciones_usuarios(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_opciones_cliente(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_opciones_promociones(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK wnd_prec_opciones_comsumos(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_nuevo_usuario(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_nuevo_cliente(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_nuevo_promociones(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK wnd_prec_nuevo_consumos(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_actualizar_usuario(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_actualizar_cliente(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_actualizar_promociones(HWND, UINT, WPARAM, LPARAM);
+LRESULT CALLBACK wnd_prec_actualizar_consumos(HWND, UINT, WPARAM, LPARAM);
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine,
                       _In_ int nCmdShow)
@@ -37,6 +41,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			leer_usuarios();
 			leer_clientes();
 			leer_promociones();
+			leer_consumos();
 
 			DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_InicioDeSeccion), nullptr, wnd_prec_inicio_seccion);
 
@@ -69,6 +74,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 				break;
 			case IDC_BTN_OPT_CONSUMOS:
 				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_OpcionesConsumo), nullptr,
+					          wnd_prec_opciones_comsumos);
 				}
 				break;
 			}
@@ -582,6 +589,56 @@ LRESULT CALLBACK wnd_prec_opciones_promociones(HWND hWnd, UINT message, WPARAM w
 	return 0;
 }
 
+LRESULT CALLBACK wnd_prec_opciones_comsumos(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_INITDIALOG:
+		{
+		char texto[256], tmp[256];
+			Consumo* p = nullptr;
+			ir_primer_nodo_consumos_lista();
+
+			p = ptr_consumos;
+			while (p != nullptr)
+			{
+				_itoa_s(p->Id, tmp, 10);
+				strcpy_s(texto, tmp);
+				SendDlgItemMessageA(hWnd, IDC_LIST_PROMOCIONES, LB_ADDSTRING, 0, (LPARAM)texto);
+				p = p->SiguentePuntero;
+			}
+		}
+		break;
+	case WM_COMMAND:
+		{
+			switch (LOWORD(wParam))
+			{
+			case IDC_BTN_NUEVO_PROMOCIONES:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_RegistrarConsumo), nullptr, wnd_prec_nuevo_consumos);
+
+					//Consumo* p = nullptr;
+					//ir_primer_nodo_consumos_lista();
+
+					//p = ptr_consumos;
+					//SendDlgItemMessageA(hWnd, IDC_LIST_PROMOCIONES, LB_RESETCONTENT, 0, 0);
+					//while (p != nullptr)
+					//{
+					//	SendDlgItemMessageA(hWnd, IDC_LIST_PROMOCIONES, LB_ADDSTRING, 0, (LPARAM)p->Nombre);
+					//	p = p->SiguentePuntero;
+					//}
+				}
+				break;
+			}
+			break;
+		}
+	case WM_CLOSE:
+		DestroyWindow(hWnd);
+		break;
+	}
+	return 0;
+}
+
 LRESULT CALLBACK wnd_prec_nuevo_usuario(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
@@ -823,6 +880,91 @@ LRESULT CALLBACK wnd_prec_nuevo_promociones(HWND hWnd, UINT message, WPARAM wPar
 	}
 	return 0;
 }
+
+LRESULT CALLBACK wnd_prec_nuevo_consumos(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_INITDIALOG:
+		{
+			tm ltm;
+			const time_t now = time(0);
+			char fechaTexto[11], tmp[5];
+
+			localtime_s(&ltm, &now);
+			_itoa_s(ltm.tm_mday, tmp, 10);
+			strcpy_s(fechaTexto, tmp);
+			strcat_s(fechaTexto, "/");
+			_itoa_s(ltm.tm_mon + 1, tmp, 10);
+			strcat_s(fechaTexto, tmp);
+			strcat_s(fechaTexto, "/");
+			_itoa_s(ltm.tm_year + 1900, tmp, 10);
+			strcat_s(fechaTexto, tmp);
+
+			SetDlgItemTextA(hWnd, IDC_STATIC_FECHA, fechaTexto);
+		}
+		break;
+	case WM_COMMAND:
+		{
+			switch (LOWORD(wParam))
+			{
+			case IDC_BTN_GUARDAR:
+				{
+					char nombre[50], monto[256], porcentaje[256], fecha[11];
+					GetDlgItemTextA(hWnd, IDC_BUTTON_NOMBRE_PROMOCION, nombre, sizeof(nombre));
+					GetDlgItemTextA(hWnd, IDC_EDIT_MONTO, monto, sizeof(monto));
+					GetDlgItemTextA(hWnd, IDC_EDIT_PORCENTAJE, porcentaje, sizeof(porcentaje));
+					GetDlgItemTextA(hWnd, IDC_STATIC_FECHA, fecha, sizeof(fecha));
+
+					if (!nombre_promocion_es_valido(nombre))
+					{
+						MessageBox(nullptr,
+						           L"El nombre de la promocion es invalido\nSolo caracteres alfabéticos y espacios, mínimo 5 y máximo 50.",
+						           L"Error", MB_OK | MB_ICONERROR);
+						break;
+					}
+					else if (strcmp(monto, "") == 0 && !monto_promociones_es_valida(atoi(monto)))
+					{
+						MessageBox(nullptr,
+						           L"El monto de la promocion es invalido\nSolo números no negativos mayores a 100.",
+						           L"Error", MB_OK | MB_ICONERROR);
+						break;
+					}
+					// TODO Aparentemente aqui hay un error
+					else if (strcmp(porcentaje, "") == 0 && porcentaje_descuento_promocion_es_valido(atoi(porcentaje)))
+					{
+						MessageBox(nullptr,
+						           L"El descuento de la promocion es invalida\nCantidad decimal, mayor a 0 y menor a 100.",
+						           L"Error", MB_OK | MB_ICONERROR);
+						break;
+					}
+
+					Promocion* p = new Promocion;
+					strcpy_s(p->Nombre, nombre);
+					strcpy_s(p->Fecha, fecha);
+					p->MontoPromocion = atoi(monto);
+					p->PorcentajeDescuento = atoi(porcentaje);
+
+					if (IsDlgButtonChecked(hWnd, IDC_CHECK_PROMOCION_ACTIVA) == BST_CHECKED)
+						p->Estatus = true;
+					else
+						p->Estatus = false;
+
+					agregar_promocion_lista(p);
+					guardar_en_archivo_promociones();
+					DestroyWindow(hWnd);
+				}
+				break;
+			}
+			break;
+		}
+	case WM_CLOSE:
+		DestroyWindow(hWnd);
+		break;
+	}
+	return 0;
+}
+
 
 // TODO Falta el proceso para la foto de perfil
 // TODO Falta crear pantalla y proceso para cambiar la contraseña
