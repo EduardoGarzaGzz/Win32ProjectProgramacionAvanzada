@@ -28,6 +28,8 @@ LRESULT CALLBACK wnd_prec_actualizar_cliente(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_actualizar_promociones(HWND, UINT, WPARAM, LPARAM);
 LRESULT CALLBACK wnd_prec_actualizar_consumos(HWND, UINT, WPARAM, LPARAM);
 
+LRESULT CALLBACK wnd_prec_sobre(HWND, UINT, WPARAM, LPARAM);
+
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPWSTR lpCmdLine,
                       _In_ int nCmdShow)
 {
@@ -60,6 +62,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_OPT_USUARIOS:
 				{
 					DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_OpcionesUsuario), nullptr,
@@ -106,6 +119,17 @@ LRESULT CALLBACK wnd_prec_inicio_seccion(HWND hWnd, UINT message, WPARAM wParam,
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case ID_BTN_INICIO_SECCION:
 				{
 					Usuario* u = new Usuario;
@@ -159,6 +183,17 @@ LRESULT CALLBACK wnd_prec_registro_admin(HWND hWnd, UINT message, WPARAM wParam,
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_GUARDAR:
 				{
 					Usuario* u = new Usuario;
@@ -244,6 +279,17 @@ LRESULT CALLBACK wnd_prec_opciones_usuarios(HWND hWnd, UINT message, WPARAM wPar
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_NUEVO_USUARIO:
 				{
 					DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_RegistrarUsuario), nullptr,
@@ -369,6 +415,17 @@ LRESULT CALLBACK wnd_prec_opciones_cliente(HWND hWnd, UINT message, WPARAM wPara
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_NUEVO_CLIENTE:
 				{
 					DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_RegistrarCliente), nullptr,
@@ -494,6 +551,17 @@ LRESULT CALLBACK wnd_prec_opciones_promociones(HWND hWnd, UINT message, WPARAM w
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_NUEVO_PROMOCIONES:
 				{
 					DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_RegistrarPromocion), nullptr,
@@ -620,6 +688,17 @@ LRESULT CALLBACK wnd_prec_opciones_comsumos(HWND hWnd, UINT message, WPARAM wPar
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_NUEVO_CONSUMO:
 				{
 					DialogBox(hInst, MAKEINTRESOURCE(IDD_DIALO_RegistrarConsumo), nullptr,
@@ -691,6 +770,17 @@ LRESULT CALLBACK wnd_prec_nuevo_usuario(HWND hWnd, UINT message, WPARAM wParam, 
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_GUARDAR:
 				{
 					char nombre_usuario[50], alias_usuario[10], password[30];
@@ -775,6 +865,17 @@ LRESULT CALLBACK wnd_prec_nuevo_cliente(HWND hWnd, UINT message, WPARAM wParam, 
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_GUARDAR:
 				{
 					char nombre[50], alias[15], telefono[11], email[25], fecha[11];
@@ -863,6 +964,17 @@ LRESULT CALLBACK wnd_prec_nuevo_promociones(HWND hWnd, UINT message, WPARAM wPar
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_GUARDAR:
 				{
 					char nombre[50], monto[256], porcentaje[256], fecha[11];
@@ -957,6 +1069,17 @@ LRESULT CALLBACK wnd_prec_nuevo_consumos(HWND hWnd, UINT message, WPARAM wParam,
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_EDIT_MONTO:
 				{
 					switch (HIWORD(wParam))
@@ -1084,6 +1207,17 @@ LRESULT CALLBACK wnd_prec_actualizar_usuario(HWND hWnd, UINT message, WPARAM wPa
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_GUARDAR:
 				{
 					char nombre_usuario[50], alias_usuario[10];
@@ -1140,6 +1274,17 @@ LRESULT CALLBACK wnd_prec_actualizar_cliente(HWND hWnd, UINT message, WPARAM wPa
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_GUARDAR:
 				{
 					char nombre[50], alias[15], telefono[11], email[25];
@@ -1214,6 +1359,17 @@ LRESULT CALLBACK wnd_prec_actualizar_promociones(HWND hWnd, UINT message, WPARAM
 		{
 			switch (LOWORD(wParam))
 			{
+			case IDM_ABOUT:
+				{
+					DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), nullptr,
+					          DLGPROC(wnd_prec_sobre));
+				}
+				break;
+			case IDM_EXIT:
+				{
+					DestroyWindow(hWnd);
+				}
+				break;
 			case IDC_BTN_GUARDAR:
 				{
 					char nombre[50], monto[256], porcentaje[256], fecha[11];
@@ -1254,6 +1410,29 @@ LRESULT CALLBACK wnd_prec_actualizar_promociones(HWND hWnd, UINT message, WPARAM
 						promocion_seleccionada->Estatus = false;
 
 					guardar_en_archivo_promociones();
+					DestroyWindow(hWnd);
+				}
+				break;
+			}
+			break;
+		}
+	case WM_CLOSE:
+		DestroyWindow(hWnd);
+		break;
+	}
+	return 0;
+}
+
+LRESULT CALLBACK wnd_prec_sobre(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
+{
+	switch (message)
+	{
+	case WM_COMMAND:
+		{
+			switch (LOWORD(wParam))
+			{
+			case IDOK:
+				{
 					DestroyWindow(hWnd);
 				}
 				break;
