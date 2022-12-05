@@ -14,12 +14,12 @@ struct Usuario
 	char NombreDeUsuario[50];
 	char AliasDeUsuario[10];
 	char Password[30];
-	char RutaFoto[255];
+	char RutaFoto[MAX_PATH];
 	char TipoUsuario[30];
 
 	struct Usuario* SiguentePuntero;
 	struct Usuario* AnteriorPuntero;
-} * ptr_usuarios = nullptr;
+}* ptr_usuarios = nullptr;
 
 struct Cliente
 {
@@ -33,7 +33,7 @@ struct Cliente
 
 	struct Cliente* SiguentePuntero;
 	struct Cliente* AnteriorPuntero;
-} * ptr_clientes = nullptr;
+}* ptr_clientes = nullptr;
 
 
 struct Promocion
@@ -46,12 +46,12 @@ struct Promocion
 
 	struct Promocion* SiguentePuntero;
 	struct Promocion* AnteriorPuntero;
-} * ptr_promociones = nullptr;
+}* ptr_promociones = nullptr;
 
 struct Consumo
 {
-	int Id;
-	int ClienteId;
+	int id;
+	char NombreCliente[50];
 	float Monto;
 	char Fecha[11];
 	float SubTotal;
@@ -60,4 +60,4 @@ struct Consumo
 
 	struct Consumo* SiguentePuntero;
 	struct Consumo* AnteriorPuntero;
-} * ptr_consumos = nullptr;
+}* ptr_consumos = nullptr;

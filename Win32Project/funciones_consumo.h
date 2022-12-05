@@ -24,6 +24,17 @@ void ir_ultimo_nodo_consumos_lista()
 	}
 }
 
+int optener_proximo_id_consumo()
+{
+	if (ptr_consumos == nullptr) return 0;
+	while (ptr_consumos->SiguentePuntero != nullptr)
+	{
+		ptr_consumos = ptr_consumos->SiguentePuntero;
+	}
+
+	return ptr_consumos->id + 1;
+}
+
 void agregar_consumo_lista(Consumo* c)
 {
 	c->SiguentePuntero = nullptr;
@@ -66,7 +77,8 @@ void leer_consumos()
 		consumo->AnteriorPuntero = nullptr;
 
 		agregar_consumo_lista(consumo);
-	} while (true);
+	}
+	while (true);
 
 	file.close();
 }
@@ -91,4 +103,21 @@ void guardar_en_archivo_consumos()
 	}
 
 	file.close();
+}
+
+Consumo* buscar_consumo_por_id(int id)
+{
+	ir_primer_nodo_consumos_lista();
+	Consumo* c = nullptr;
+
+	c = ptr_consumos;
+	while (c != nullptr)
+	{
+		if (c->id == id)
+			return c;
+
+		c = c->SiguentePuntero;
+	}
+
+	return nullptr;
 }
